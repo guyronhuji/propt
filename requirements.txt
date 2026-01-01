@@ -1,5 +1,5 @@
 
-pydantic-ai
+pydantic-ai-slim
 openai
 google-generativeai
 python-dotenv
