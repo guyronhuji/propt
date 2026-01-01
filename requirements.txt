@@ -3,3 +3,5 @@ pydantic-ai-slim
 openai
 google-generativeai
 python-dotenv
+fastapi
+uvicorn
