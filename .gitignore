@@ -41,3 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 deploy.sh
+
+# python
+venv/
+__pycache__/
+*.pyc

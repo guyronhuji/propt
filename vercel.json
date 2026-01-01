@@ -4,5 +4,10 @@
             "source": "/api/(.*)",
             "destination": "/api/index.py"
         }
+    ],
+    "exclude": [
+        "venv",
+        "node_modules",
+        ".git"
     ]
 }
