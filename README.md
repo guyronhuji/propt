@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prompt Optimizer - Web Platform
 
-## Getting Started
+This is a web version of the Prompt Optimizer, built with Next.js and FastAPI, designed for Vercel deployment.
 
-First, run the development server:
+## Structure
+
+- `src/`: Next.js frontend using Tailwind CSS.
+- `api/`: Python backend using FastAPI (Serverless Functions).
+- `requirements.txt`: Python dependencies.
+
+## Local Development
+
+### 1. Prerequisites
+- Node.js & pnpm
+- Python 3.9+
+- `.env` file with `OPENAI_API_KEY` and `GEMINI_API_KEY` in the `web-platform` directory.
+
+### 2. Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd web-platform
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Running
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run locally, you need to run both the Python backend and the Next.js frontend. We've provided a helper script to make this easy.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Option A (Recommended):**
+```bash
+./run_dev.sh
+```
+This will:
+1. Create a Python virtual environment and install requirements (if needed).
+2. Start the FastAPI backend on port 8000.
+3. Start the Next.js frontend on port 3000.
 
-## Learn More
+**Option B (Vercel CLI):**
+```bash
+vercel dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Option C (Manual):**
+1. Start Python Backend:
+   ```bash
+   pip install -r requirements.txt
+   uvicorn api.index:app --reload --port 8000
+   ```
+2. Start Frontend:
+   ```bash
+   pnpm dev
+   ```
+   *Note: `next.config.ts` is configured to rewrite `/api` calls to `localhost:8000` when in development mode.*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy to Vercel:
+1. Push this repository (or just the `web-platform` folder).
+2. Set **Root Directory** to `web-platform` in Vercel Project Settings.
+3. Set Environment Variables (`OPENAI_API_KEY`, `GEMINI_API_KEY`).
+4. Vercel automatically detects Next.js and the Python API.
